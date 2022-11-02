@@ -63,6 +63,8 @@
             <p v-else>
               Install & connect your Keplr wallet via the Keplr browser
               extension to use this app.
+              <br />
+              <a href="https://www.keplr.app/" style="display: block; margin-top: 20px;">Install</a>
             </p>
           </div>
           <div v-else-if="state.modalPage === 'connecting'">

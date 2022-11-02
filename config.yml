@@ -9,7 +9,10 @@ accounts:
     mnemonic: such crisp stereo famous mixed horror journey host tell model swarm goddess
 validators:
   - name: alice
-    bonded: "100000000stake"
+    bonded: "100000stake"
+validator:
+  name: alice
+  staked: "10000stake"
 client:
   openapi:
     path: "docs/static/openapi.yml"
