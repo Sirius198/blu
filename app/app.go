@@ -107,6 +107,7 @@ import (
 	blumodule "blu/x/blu"
 	blumodulekeeper "blu/x/blu/keeper"
 	blumoduletypes "blu/x/blu/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	appparams "blu/app/params"
@@ -195,6 +196,8 @@ func init() {
 	}
 
 	DefaultNodeHome = filepath.Join(userHomeDir, "."+Name)
+
+	RegisterCoinDenominations()
 }
 
 // App extends an ABCI application, but with most of its parameters exported.
@@ -878,4 +881,9 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 // SimulationManager implements the SimulationApp interface
 func (app *App) SimulationManager() *module.SimulationManager {
 	return app.sm
+}
+
+func RegisterCoinDenominations() {
+	_ = sdk.RegisterDenom("blu", sdk.OneDec())
+	_ = sdk.RegisterDenom("ublu", sdk.NewDecWithPrec(1, 6))
 }

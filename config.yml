@@ -5,7 +5,7 @@ accounts:
   - name: bob
     coins: ["10000blu", "100000000stake"]
   - name: governor
-    coins: ["1000000000blu"]
+    coins: ["1000000000blu", "1000stake"]
     mnemonic: such crisp stereo famous mixed horror journey host tell model swarm goddess
 validators:
   - name: alice
