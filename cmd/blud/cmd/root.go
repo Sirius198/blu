@@ -34,6 +34,7 @@ import (
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
+
 	// this line is used by starport scaffolding # root/moduleImport
 
 	"blu/app"
@@ -378,7 +379,7 @@ func initAppConfig() (string, interface{}) {
 	//   own app.toml to override, or use this default value.
 	//
 	// In simapp, we set the min gas prices to 0.
-	srvCfg.MinGasPrices = "0.001ublu"
+	srvCfg.MinGasPrices = "0.0001blu"
 
 	customAppConfig := CustomAppConfig{
 		Config: *srvCfg,

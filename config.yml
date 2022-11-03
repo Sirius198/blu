@@ -1,18 +1,15 @@
 version: 1
 accounts:
   - name: alice
-    coins: ["20000token", "200000000stake"]
+    coins: ["20000blu", "200000000stake"]
   - name: bob
-    coins: ["10000token", "100000000stake"]
+    coins: ["10000blu", "100000000stake"]
   - name: governor
-    coins: ["1000000000token"]
+    coins: ["1000000000blu"]
     mnemonic: such crisp stereo famous mixed horror journey host tell model swarm goddess
 validators:
   - name: alice
-    bonded: "100000stake"
-validator:
-  name: alice
-  staked: "10000stake"
+    bonded: "100000000stake"
 client:
   openapi:
     path: "docs/static/openapi.yml"
