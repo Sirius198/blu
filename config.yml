@@ -1,15 +1,15 @@
 version: 1
 accounts:
   - name: alice
-    coins: ["20000blu", "200000000stake"]
+    coins: ["20000000blu"]
   - name: bob
-    coins: ["10000blu", "100000000stake"]
+    coins: ["10000blu"]
   - name: governor
-    coins: ["1000000000blu", "1000stake"]
+    coins: ["1000000000blu"]
     mnemonic: such crisp stereo famous mixed horror journey host tell model swarm goddess
 validators:
   - name: alice
-    bonded: "100000000stake"
+    bonded: "10000000blu"
 client:
   openapi:
     path: "docs/static/openapi.yml"
@@ -19,4 +19,9 @@ client:
     path: "vue/src/store"
 faucet:
   name: bob
-  coins: ["5token", "100000stake"]
+  coins: ["5token"]
+genesis:
+  app_state:
+    staking:
+      params:
+        bond_denom: "ublu"

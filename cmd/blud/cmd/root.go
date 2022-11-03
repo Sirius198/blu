@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -379,7 +380,11 @@ func initAppConfig() (string, interface{}) {
 	//   own app.toml to override, or use this default value.
 	//
 	// In simapp, we set the min gas prices to 0.
-	srvCfg.MinGasPrices = ""
+	baseDenom, err := sdk.GetBaseDenom()
+	if err != nil {
+		srvCfg.MinGasPrices = ""
+	}
+	srvCfg.MinGasPrices = fmt.Sprintf("100%s", baseDenom)
 
 	customAppConfig := CustomAppConfig{
 		Config: *srvCfg,
