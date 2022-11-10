@@ -197,7 +197,7 @@ func init() {
 
 	DefaultNodeHome = filepath.Join(userHomeDir, "."+Name)
 
-	RegisterCoinDenominations()
+	RegisterCoinDenoms()
 }
 
 // App extends an ABCI application, but with most of its parameters exported.
@@ -883,7 +883,7 @@ func (app *App) SimulationManager() *module.SimulationManager {
 	return app.sm
 }
 
-func RegisterCoinDenominations() {
+func RegisterCoinDenoms() {
 	_ = sdk.RegisterDenom("blu", sdk.OneDec())
 	_ = sdk.RegisterDenom("ublu", sdk.NewDecWithPrec(1, 6))
 }

@@ -3,7 +3,7 @@ import { EventEmitter } from 'events'
 import { computed, ComputedRef, Ref, ref, watch } from 'vue'
 import { Store } from 'vuex'
 
-import { Amount } from '@/utils/interfaces'
+import { Amount } from '../utils/interfaces'
 
 import useAPIPagination, {
   merge,

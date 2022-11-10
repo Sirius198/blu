@@ -34,15 +34,20 @@ export default function ({ $s }: Params): Response {
       let rest = $s.getters['common/env/apiCosmos']
       let addrPrefix = $s.getters['common/env/addrPrefix']
 
+      let coinDenom = $s.getters['common/env/coinDenom']
+      let coinDenomMin = $s.getters['common/env/coinDenomMin']
+      let coinDenomMinDecimal = $s.getters['common/env/coinDenomMinDecimal']
+
       let stakeCurrency = {
-        coinDenom: staking.params.bond_denom.toUpperCase(),
-        coinMinimalDenom: staking.params.bond_denom,
-        coinDecimals: 0
+        coinDenom: coinDenom,
+        coinMinimalDenom: coinDenomMin,
+        coinDecimals: coinDenomMinDecimal
       }
 
       let bip44 = {
         coinType: 118
       }
+      console.log(chainId)
 
       let bech32Config = {
         bech32PrefixAccAddr: addrPrefix,
@@ -53,7 +58,7 @@ export default function ({ $s }: Params): Response {
         bech32PrefixConsPub: addrPrefix + 'valconspub'
       }
 
-      let currencies = tokens.supply.map((x: Amount) => {
+      let currencies = tokens.supply.filter((a: Amount) => a.denom == coinDenomMin).map((x: Amount) => {
         const y: AmountWithMeta = {
           amount: '0',
           denom: '',
@@ -61,13 +66,13 @@ export default function ({ $s }: Params): Response {
           coinMinimalDenom: '',
           coinDecimals: 0
         }
-        y.coinDenom = x.denom.toUpperCase()
-        y.coinMinimalDenom = x.denom
-        y.coinDecimals = 0
+        y.coinDenom = coinDenom.toUpperCase()
+        y.coinMinimalDenom = coinDenomMin
+        y.coinDecimals = coinDenomMinDecimal
         return y
       })
 
-      let feeCurrencies = tokens.supply.map((x: Amount) => {
+      let feeCurrencies = tokens.supply.filter((a: Amount) => a.denom == coinDenomMin).map((x: Amount) => {
         const y: AmountWithMeta = {
           amount: '0',
           denom: '',
@@ -75,9 +80,9 @@ export default function ({ $s }: Params): Response {
           coinMinimalDenom: '',
           coinDecimals: 0
         }
-        y.coinDenom = x.denom.toUpperCase()
-        y.coinMinimalDenom = x.denom
-        y.coinDecimals = 0
+        y.coinDenom = coinDenom.toUpperCase()
+        y.coinMinimalDenom = coinDenomMin
+        y.coinDecimals = coinDenomMinDecimal
         return y
       })
 

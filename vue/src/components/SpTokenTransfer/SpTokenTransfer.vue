@@ -3,7 +3,7 @@
     <!-- feedbacks -->
     <div v-if="isTxOngoing" class="feedback">
       <div class="loading-spinner">
-        <SpSpinner size="46"></SpSpinner>
+        <SpSpinner :size="46"></SpSpinner>
       </div>
       <div style="width: 100%; height: 24px" />
 
@@ -277,7 +277,7 @@
           <SpCard>
             <template #top>
               <div class="qrcode-wrapper">
-                <SpQrCode :value="address" color="#000" width="112" />
+                <SpQrCode :value="address" color="#000" :width="112" />
               </div>
             </template>
 
@@ -302,8 +302,8 @@ import long from 'long'
 import { computed, defineComponent, PropType, reactive, watch } from 'vue'
 import { useStore } from 'vuex'
 
-import { AssetForUI } from '@/composables/useAssets'
-import { Amount } from '@/utils/interfaces'
+import { AssetForUI } from '../../composables/useAssets'
+import { Amount } from '../../utils/interfaces'
 
 import { useAddress, useAssets } from '../../composables'
 import SpAmountSelect from '../SpAmountSelect'
@@ -414,6 +414,11 @@ export default defineComponent({
         denom: x.amount.denom,
         amount: x.amount.amount == '' ? '0' : x.amount.amount
       }))
+      // console.log('fee', state.tx.fees)
+      fee = [{
+        denom: 'ublu',
+        amount: '10000'
+      }]
 
       let amount: Array<Amount> = state.tx.amount.map((x: AssetForUI) => ({
         denom: x.amount.denom,

@@ -9,7 +9,7 @@ import {
 } from 'vue'
 import { Store } from 'vuex'
 
-import { Amount, DenomTrace } from '@/utils/interfaces'
+import { Amount, DenomTrace } from '../utils/interfaces'
 
 import { useAddress, useDenom } from '.'
 

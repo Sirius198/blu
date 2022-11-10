@@ -19,6 +19,9 @@ const wsNode =
     process.env.VUE_APP_WS_TENDERMINT.replace('0.0.0.0', 'localhost')) ||
   'ws://localhost:26657/websocket'
 const addrPrefix = import.meta.env ? import.meta.env.VITE_ADDRESS_PREFIX || 'cosmos' : process.env.VUE_APP_ADDRESS_PREFIX || 'cosmos'
+const coinDenom = process.env.VUE_APP_COIN_DENOM || 'STAKE'
+const coinDenomMin = process.env.VUE_APP_COIN_DENOM_MIN || 'stake'
+const coinDenomMinDecimal = process.env.VUE_APP_COIN_DENOM_MIN_DECIMAL || '6'
 
 export default {
   namespaced: true,
@@ -36,7 +39,10 @@ export default {
       rpcConnected: false,
       wsConnected: false,
       getTXApi: '',
-      initialized: false
+      initialized: false,
+      coinDenom,
+      coinDenomMin,
+      coinDenomMinDecimal
     }
   },
   getters: {
@@ -52,6 +58,9 @@ export default {
     apiConnected: (state) => state.apiConnected,
     rpcConnected: (state) => state.rpcConnected,
     wsConnected: (state) => state.wsConnected,
+    coinDenom: (state) => state.coinDenom,
+    coinDenomMin: (state) => state.coinDenomMin,
+    coinDenomMinDecimal: (state) => state.coinDenomMinDecimal,
     getEnv: (state) => ({
       chainID: state.chainId,      
       chainName: state.chainName,
@@ -63,7 +72,10 @@ export default {
         apiConnected: state.apiConnected,
         rpcConnected: state.rpcConnected,
         wsConnected: state.wsConnected
-      }
+      },
+      coinDenom: state.coinDenom,
+      coinDenomMin: state.coinDenomMin,
+      coinDenomMinDecimal: state.coinDenomMinDecimal,
     })
   },
   mutations: {
@@ -86,6 +98,15 @@ export default {
       }
       if (config.getTXApi || config.offline) {
         state.getTXApi = config.getTXApi
+      }
+      if (config.coinDenom || config.offline) {
+        state.coinDenom = config.coinDenom
+      }
+      if (config.coinDenomMin || config.offline) {
+        state.coinDenomMin = config.coinDenomMin
+      }
+      if (config.coinDenomMinDecimal || config.offline) {
+        state.coinDenomMinDecimal = config.coinDenomMinDecimal
       }
     },
     CONNECT(state, { client }) {
