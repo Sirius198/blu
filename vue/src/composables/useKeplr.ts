@@ -47,7 +47,6 @@ export default function ({ $s }: Params): Response {
       let bip44 = {
         coinType: 118
       }
-      console.log(chainId)
 
       let bech32Config = {
         bech32PrefixAccAddr: addrPrefix,

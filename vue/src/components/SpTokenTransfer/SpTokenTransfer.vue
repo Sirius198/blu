@@ -16,26 +16,9 @@
 
     <div v-else-if="isTxSuccess" class="feedback">
       <div class="check-icon">
-        <svg
-          width="64"
-          height="63"
-          viewBox="0 0 64 63"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="32"
-            cy="31.5"
-            r="29.5"
-            stroke="#00CF30"
-            stroke-width="4"
-            stroke-linecap="round"
-          />
-          <path
-            d="M19 30.1362L28.6557 40L45 23"
-            stroke="#00CF30"
-            stroke-width="4"
-          />
+        <svg width="64" height="63" viewBox="0 0 64 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="31.5" r="29.5" stroke="#00CF30" stroke-width="4" stroke-linecap="round" />
+          <path d="M19 30.1362L28.6557 40L45 23" stroke="#00CF30" stroke-width="4" />
         </svg>
       </div>
 
@@ -45,12 +28,7 @@
 
       <div style="width: 100%; height: 8px" />
 
-      <div
-        v-for="(x, i) in state.tx.amount"
-        :key="'amount' + i"
-        class="tx-feedback-subtitle amount"
-        :index="i"
-      >
+      <div v-for="(x, i) in state.tx.amount" :key="'amount' + i" class="tx-feedback-subtitle amount" :index="i">
         {{ parseAmount(x.amount.amount) }} {{ x.amount.denom }}
       </div>
 
@@ -63,38 +41,17 @@
 
     <div v-else-if="isTxError" class="feedback">
       <div class="warning-icon">
-        <svg
-          width="58"
-          height="54"
-          viewBox="0 0 58 54"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="58" height="54" viewBox="0 0 58 54" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M29 44.5625C29.7249 44.5625 30.3125 43.9749 30.3125 43.25C30.3125 42.5251 29.7249 41.9375 29 41.9375C28.2751 41.9375 27.6875 42.5251 27.6875 43.25C27.6875 43.9749 28.2751 44.5625 29 44.5625Z"
-            fill="#FE475F"
-          />
-          <path
-            d="M1.4375 52.4375L29 1.25L56.5625 52.4375H1.4375Z"
-            stroke="#FE475F"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M29 19.625V34.0625"
-            stroke="#FE475F"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+            fill="#FE475F" />
+          <path d="M1.4375 52.4375L29 1.25L56.5625 52.4375H1.4375Z" stroke="#FE475F" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M29 19.625V34.0625" stroke="#FE475F" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
           <path
             d="M29 44.5625C29.7249 44.5625 30.3125 43.9749 30.3125 43.25C30.3125 42.5251 29.7249 41.9375 29 41.9375C28.2751 41.9375 27.6875 42.5251 27.6875 43.25C27.6875 43.9749 28.2751 44.5625 29 44.5625Z"
-            stroke="#FE475F"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+            stroke="#FE475F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
 
@@ -115,9 +72,7 @@
 
         <div style="width: 100%; height: 8px" />
 
-        <SpButton style="width: 100%" type="secondary" @click="resetTx"
-          >Cancel</SpButton
-        >
+        <SpButton style="width: 100%" type="secondary" @click="resetTx">Cancel</SpButton>
       </div>
     </div>
 
@@ -135,11 +90,7 @@
 
         <div style="width: 24px; height: 100%" />
 
-        <div
-          class="title"
-          :class="{ active: showReceive, disabled: !hasAnyBalance }"
-          @click="switchToReceive"
-        >
+        <div class="title" :class="{ active: showReceive, disabled: !hasAnyBalance }" @click="switchToReceive">
           Receive
         </div>
       </div>
@@ -152,19 +103,10 @@
           <div class="input-label">Send to</div>
 
           <div class="input-wrapper">
-            <input
-              v-model="state.tx.receiver"
-              class="input"
-              :class="{
-                error: state.tx.receiver.length > 0 && !validReceiver
-              }"
-              placeholder="Recipient address"
-              :disabled="!hasAnyBalance"
-            />
-            <div
-              v-if="state.tx.receiver.length > 0 && !validReceiver"
-              class="error-message"
-            >
+            <input v-model="state.tx.receiver" class="input" :class="{
+              error: state.tx.receiver.length > 0 && !validReceiver
+            }" placeholder="Recipient address" :disabled="!hasAnyBalance" />
+            <div v-if="state.tx.receiver.length > 0 && !validReceiver" class="error-message">
               Invalid address
             </div>
           </div>
@@ -172,81 +114,46 @@
 
         <div style="width: 100%; height: 21px" />
         <div v-if="hasAnyBalance">
-          <SpAmountSelect
-            class="token-selector--main"
-            :selected="state.tx.amount"
-            :balances="balances.assets"
-            @update="handleTxAmountUpdate"
-          />
+          <SpAmountSelect class="token-selector--main" :selected="state.tx.amount" :balances="balances.assets"
+            @update="handleTxAmountUpdate" />
           <div style="width: 100%; height: 34px" />
         </div>
 
-        <div
-          :class="[
-            'advanced-label',
-            { 'advanced-label--disabled': !hasAnyBalance }
-          ]"
-          @click="hasAnyBalance && (state.advancedOpen = !state.advancedOpen)"
-        >
+        <div :class="[
+          'advanced-label',
+          { 'advanced-label--disabled': !hasAnyBalance }
+        ]" @click="hasAnyBalance && (state.advancedOpen = !state.advancedOpen)">
           Advanced
           <template v-if="hasAnyBalance">
-            <svg
-              v-if="!state.advancedOpen"
-              width="12"
-              height="8"
-              viewBox="0 0 12 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-left: 7px"
-            >
-              <path
-                d="M5.99998 7.4L0.599976 2L1.99998 0.599998L5.99998 4.6L9.99998 0.599998L11.4 2L5.99998 7.4Z"
-                fill="black"
-              />
+            <svg v-if="!state.advancedOpen" width="12" height="8" viewBox="0 0 12 8" fill="none"
+              xmlns="http://www.w3.org/2000/svg" style="margin-left: 7px">
+              <path d="M5.99998 7.4L0.599976 2L1.99998 0.599998L5.99998 4.6L9.99998 0.599998L11.4 2L5.99998 7.4Z"
+                fill="black" />
             </svg>
-            <svg
-              v-else
-              width="12"
-              height="8"
-              viewBox="0 0 12 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-left: 7px"
-            >
+            <svg v-else width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="margin-left: 7px">
               <path
                 d="M10.0001 7.4001L6.0001 3.4001L2.0001 7.4001L0.600098 6.0001L6.0001 0.600098L11.4001 6.0001L10.0001 7.4001Z"
-                fill="black"
-              />
+                fill="black" />
             </svg>
           </template>
         </div>
 
-        <div
-          v-if="state.advancedOpen && hasAnyBalance"
-          style="width: 100%; height: 24px"
-        />
+        <div v-if="state.advancedOpen && hasAnyBalance" style="width: 100%; height: 24px" />
 
         <div v-if="state.advancedOpen && hasAnyBalance" class="advanced">
           <div class="input-label">Fees</div>
 
           <div style="width: 100%; height: 14px" />
-          <SpAmountSelect
-            class="token-selector"
-            :selected="state.tx.fees"
-            :balances="balances.assets"
-            @update="handleTxFeesUpdate"
-          />
+          <SpAmountSelect class="token-selector" :selected="state.tx.fees" :balances="balances.assets"
+            @update="handleTxFeesUpdate" />
 
           <div style="width: 100%; height: 35px" />
 
           <div class="input-label">Reference (memo)</div>
 
           <div class="input-wrapper">
-            <input
-              v-model="state.tx.memo"
-              class="input"
-              placeholder="Enter a reference"
-            />
+            <input v-model="state.tx.memo" class="input" placeholder="Enter a reference" />
           </div>
 
           <div style="width: 100%; height: 16px" />
@@ -254,20 +161,14 @@
           <div class="input-label">Channel</div>
 
           <div class="input-wrapper">
-            <input
-              v-model="state.tx.ch"
-              class="input"
-              placeholder="Enter a channel"
-            />
+            <input v-model="state.tx.ch" class="input" placeholder="Enter a channel" />
           </div>
         </div>
 
         <div style="width: 100%; height: 24px" />
 
         <div>
-          <SpButton style="width: 100%" :disabled="!ableToTx" @click="sendTx"
-            >Send</SpButton
-          >
+          <SpButton style="width: 100%" :disabled="!ableToTx" @click="sendTx">Send</SpButton>
         </div>
       </div>
 
@@ -286,7 +187,9 @@
                 <div class="address">
                   {{ address }}
                 </div>
-                <div class="copy"><SpClipboard :text="address" /></div>
+                <div class="copy">
+                  <SpClipboard :text="address" />
+                </div>
               </div>
             </template>
           </SpCard>
@@ -411,18 +314,19 @@ export default defineComponent({
       state.currentUIState = UI_STATE.TX_SIGNING
 
       let fee: Array<Amount> = state.tx.fees.map((x: AssetForUI) => ({
-        denom: x.amount.denom,
-        amount: x.amount.amount == '' ? '0' : x.amount.amount
+        denom: 'u' + x.amount.denom,
+        amount: x.amount.amount == '' ? '0' : String(Number(x.amount.amount) * 1e6)
       }))
-      // console.log('fee', state.tx.fees)
-      fee = [{
-        denom: 'ublu',
-        amount: '10000'
-      }]
+      if (state.tx.fees.length == 0) {
+        fee = [{
+          denom: 'ublu',
+          amount: '5000'
+        }]
+      }
 
       let amount: Array<Amount> = state.tx.amount.map((x: AssetForUI) => ({
-        denom: x.amount.denom,
-        amount: x.amount.amount == '' ? '0' : x.amount.amount
+        denom: 'u' + x.amount.denom,
+        amount: x.amount.amount == '' ? '0' : String(Number(x.amount.amount) * 1e6)
       }))
 
       let memo = state.tx.memo
@@ -624,6 +528,7 @@ export default defineComponent({
 
   &--disabled {
     color: rgba(0, 0, 0, 0.33);
+
     &:hover {
       cursor: default !important;
     }
@@ -633,17 +538,21 @@ export default defineComponent({
 .advanced-label:hover {
   cursor: pointer;
 }
+
 .copy {
   padding: 12px 0;
 }
+
 .feedback {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .tx {
   padding-bottom: 40px;
 }
+
 .token-selector {
   &--main {
     &:deep(.add-token) {
@@ -698,9 +607,11 @@ export default defineComponent({
 
   color: #000000;
 }
+
 .tx-feedback-subtitle.amount {
   text-transform: uppercase;
 }
+
 .tx-feedback-subtitle {
   font-family: Inter;
   font-style: normal;

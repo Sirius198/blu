@@ -85,10 +85,16 @@ export default function ({ $s, opts }: Params): Response {
         : denomTrace.denom_trace.path
       normalized.amount.denom = denomTrace.denom_trace.base_denom
     } else {
-      normalized.amount.denom = balance.denom
+      if (balance.denom.charAt(0) == 'u') {
+        normalized.amount.denom = balance.denom.slice(1)
+      } else {
+        normalized.amount.denom = balance.denom
+      }
+      // normalized.amount.denom = balance.denom
     }
 
-    normalized.amount.amount = balance.amount
+    // normalized.amount.amount = balance.amount
+    normalized.amount.amount = String(Number(balance.amount) / (1e6))
 
     return normalized
   }

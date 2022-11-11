@@ -46,6 +46,7 @@ export default async function ({
   // methods
   let normalizeAPIResponse = (resp: AxiosResponse) => {
     let { txs, tx_responses, pagination } = resp.data
+    console.log(resp.data)
 
     let merged = txs.map((tx, i) => {
       return { ...tx, ...tx_responses[i] }
@@ -104,12 +105,18 @@ export default async function ({
       normalized.receiver = tx.body.messages[0].to_address
       normalized.amount = tx.body.messages[0].amount
       normalized.height = Number(tx.height)
+
+      if (normalized.amount[0].denom.charAt(0) == 'u') {
+        normalized.amount[0].denom = normalized.amount[0].denom.slice(1)
+        normalized.amount[0].amount = +normalized.amount[0].amount/1e6
+      }
     }
 
     normalized.type = tx.body.messages[0]['@type']
     normalized.timestamp = tx.timestamp
     normalized.hash = tx.txhash
     normalized.dir = findOutDir(normalized)
+    console.log(normalized)
 
     return normalized as TxForUI
   }
