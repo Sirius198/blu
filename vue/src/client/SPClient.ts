@@ -44,11 +44,11 @@ export default class SPClient extends EventEmitter {
 
   constructor({ apiAddr, rpcAddr, wsAddr, refresh, offline }: IClientConfig) {
     super()
-    this.apiAddr = apiAddr
-    this.rpcAddr = rpcAddr
-    this.wsAddr = wsAddr
-    this.offline = offline
-    this.refresh = refresh
+    this.apiAddr = apiAddr!
+    this.rpcAddr = rpcAddr!
+    this.wsAddr = wsAddr!
+    this.offline = offline!
+    this.refresh = refresh!
     const poll: () => Promise<void> = this.connectivityTest.bind(this)
     this.timer = setInterval(poll, this.refresh)
     this.connectivityTest()
