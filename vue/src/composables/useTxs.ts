@@ -45,8 +45,7 @@ export default async function ({
 }: Params): Promise<Response> {
   // methods
   let normalizeAPIResponse = (resp: AxiosResponse) => {
-    let { txs, tx_responses, pagination } = resp.data
-    console.log(resp.data)
+    let { txs, tx_responses, total } = resp.data
 
     let merged = txs.map((tx, i) => {
       return { ...tx, ...tx_responses[i] }
@@ -54,7 +53,7 @@ export default async function ({
 
     return {
       data: merged,
-      total: Number(pagination.total)
+      total: Number(total)
     }
   }
   let filterSupportedTypes = (tx: any) => {
@@ -116,7 +115,6 @@ export default async function ({
     normalized.timestamp = tx.timestamp
     normalized.hash = tx.txhash
     normalized.dir = findOutDir(normalized)
-    console.log(normalized)
 
     return normalized as TxForUI
   }
@@ -190,7 +188,7 @@ export default async function ({
 
       let currentTotal = recvAndSentPager.value.total.value
       let latestTotal =
-        Number(recv.data.pagination.total) + Number(sent.data.pagination.total)
+        Number(recv.data.total) + Number(sent.data.total)
       let diff = latestTotal - currentTotal
 
       newTxs.value = diff
