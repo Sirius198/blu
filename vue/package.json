@@ -1,9 +1,10 @@
 {
-  "author": "Tendermint, Inc \u003chello@tendermint.com\u003e",
+  "author": "Tendermint, Inc <hello@tendermint.com>",
   "dependencies": {
     "@confio/relayer": "^0.3.0",
     "@cosmjs/crypto": "0.27.0",
     "@cosmjs/encoding": "0.27.0",
+    "@cosmjs/faucet": "^0.29.4",
     "@cosmjs/launchpad": "0.27.0",
     "@cosmjs/proto-signing": "0.27.0",
     "@cosmjs/stargate": "0.27.0",
