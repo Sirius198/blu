@@ -46,10 +46,10 @@
         <SpChevronRightIcon />
       </div>
       <hr class="divider" />
-      <div class="dropdown-option mb-3">
+      <!-- <a href="#" target="_blank" class="dropdown-option mb-3">
         <span> Support </span>
         <SpExternalArrowIcon />
-      </div>
+      </a>
       <div class="dropdown-option mb-3">
         <span> Twitter </span>
         <SpExternalArrowIcon />
@@ -57,7 +57,15 @@
       <div class="dropdown-option mb-3">
         <span> Telegram </span>
         <SpExternalArrowIcon />
-      </div>
+      </div> -->
+      <a href="https://explorer.bluwallet.app" target="_blank" class="dropdown-option mb-3">
+        <span> Explorer </span>
+        <SpExternalArrowIcon />
+      </a>
+      <a href="https://faucet.bluwallet.app" target="_blank" class="dropdown-option mb-3">
+        <span> Faucet </span>
+        <SpExternalArrowIcon />
+      </a>
       <div style="text-align: center; margin-top: 2rem">
         <span class="description-grey terms-link mr-2">Privacy</span>•
         <span class="description-grey terms-link mr-2 ml-1">Terms of use</span>•

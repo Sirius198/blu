@@ -12,10 +12,7 @@
           <div style="display: flex; align-items: center">
             <img src="/logo.png" style="height: 20px;" />
             <span
-              style="
-                padding: 4px 8px;
-                margin-left: 10px;
-                background: rgba(0, 0, 0, 0.03);
+              style="padding: 4px 8px;margin-left: 10px;background: rgba(0, 0, 0, 0.03);
                 border-radius: 24px;
                 font-weight: 500;
                 font-size: 10px;
@@ -38,6 +35,19 @@
           {{ link.name }}
         </div>
       </router-link>
+
+      <!-- Outer Links -->
+      <a
+        v-for="(link, lid) in outerlinks"
+        :key="`link-${lid}`"
+        class="sp-nav-link"
+        target="_blank"
+        :href="link.url"
+      >
+        <div>
+          {{ link.name }}
+        </div>
+      </a>
     </div>
     <div class="navbar-section">
       <SpAcc />
@@ -70,6 +80,10 @@ export default defineComponent({
 
   props: {
     links: {
+      type: Object as PropType<NavbarLink[]>,
+      required: true
+    },
+    outerlinks: {
       type: Object as PropType<NavbarLink[]>,
       required: true
     },

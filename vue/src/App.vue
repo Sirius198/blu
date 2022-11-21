@@ -1,10 +1,7 @@
 <template>
   <div>
     <SpTheme>
-      <SpNavbar
-        :links="navbarLinks"
-        :active-route="router.currentRoute.value.path"
-      />
+      <SpNavbar :links="navbarLinks" :outerlinks="outerLinks" :active-route="router.currentRoute.value.path" />
       <router-view />
     </SpTheme>
   </div>
@@ -29,7 +26,12 @@ export default {
     // state
     let navbarLinks = [
       { name: 'Wallet', url: '/' },
-      // { name: 'Data1', url: '/data' }
+    ]
+
+    // outer linkes
+    let outerLinks = [
+      { name: 'Explorer', url: 'https://explorer.bluwallet.app' },
+      { name: 'Faucet', url: 'https://faucet.bluwallet.app' },
     ]
 
     // computed
@@ -45,6 +47,7 @@ export default {
 
     return {
       navbarLinks,
+      outerLinks,
       // router
       router,
       // computed
