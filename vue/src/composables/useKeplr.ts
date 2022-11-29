@@ -36,7 +36,7 @@ export default function ({ $s }: Params): Response {
 
       let coinDenom = $s.getters['common/env/coinDenom']
       let coinDenomMin = $s.getters['common/env/coinDenomMin']
-      let coinDenomMinDecimal = $s.getters['common/env/coinDenomMinDecimal']
+      let coinDenomMinDecimal = Number($s.getters['common/env/coinDenomMinDecimal'])
 
       let stakeCurrency = {
         coinDenom: coinDenom,
@@ -70,6 +70,7 @@ export default function ({ $s }: Params): Response {
         y.coinDecimals = coinDenomMinDecimal
         return y
       })
+      console.log(currencies)
 
       let feeCurrencies = tokens.supply.filter((a: Amount) => a.denom == coinDenomMin).map((x: Amount) => {
         const y: AmountWithMeta = {

@@ -21,7 +21,7 @@ const wsNode =
 const addrPrefix = import.meta.env ? import.meta.env.VITE_ADDRESS_PREFIX || 'cosmos' : process.env.VUE_APP_ADDRESS_PREFIX || 'cosmos'
 const coinDenom = process.env.VUE_APP_COIN_DENOM || 'STAKE'
 const coinDenomMin = process.env.VUE_APP_COIN_DENOM_MIN || 'stake'
-const coinDenomMinDecimal = process.env.VUE_APP_COIN_DENOM_MIN_DECIMAL || '6'
+const coinDenomMinDecimal = process.env.VUE_APP_COIN_DENOM_MIN_DECIMAL || 6
 
 export default {
   namespaced: true,
